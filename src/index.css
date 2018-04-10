@@ -5,6 +5,7 @@ html, body {
   padding: 0 !important;
   height: 100% !important;
   width: 100% !important;
+  background-color: #F7F7F7;
 }
 
 /* What it does: Stops email clients resizing small text. */
