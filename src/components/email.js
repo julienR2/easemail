@@ -50,15 +50,7 @@ export default class Email extends PureComponent {
           `}
         />
         <div style={{ maxWidth }}>
-          <table cellSpacing="0" cellPadding="0" border="0" align="center" width="100%">
-            <tbody>
-              <tr>
-                <td>
-                  { children }
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          { children }
         </div>
         <Comment
           text="

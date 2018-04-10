@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import Table from './table';
+import Row from './row';
+import Column from './column';
+
 export default class Body extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -8,21 +12,25 @@ export default class Body extends PureComponent {
       PropTypes.object,
       PropTypes.string,
     ]),
+    style: PropTypes.object,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
 
     return (
-      <table cellSpacing="0" cellPadding="0" border="0" align="center" width="100%">
-        <tbody>
-          <tr>
-            <td>
-              { children }
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <Table style={{ backgroundColor: 'white', ...style }}>
+        {React.Children.map(
+          children,
+          (child) => (
+            <Row>
+              <Column>
+                { child }
+              </Column>
+            </Row>
+          )
+        )}
+      </Table>
     );
   }
 }
