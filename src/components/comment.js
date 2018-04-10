@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+/* eslint-disable react/no-danger */
+
+import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types'
-import ReactDOM from 'react-dom';
 
-export default class Comment extends Component {
-    static propTypes = {
-        text: PropTypes.string,
-    };
+export default class Comment extends PureComponent {
+  static propTypes = {
+    text: PropTypes.string,
+  };
 
-    componentDidMount() {
-        ReactDOM.unmountComponentAtNode(this.el);
-        this.el.outerHTML = this.props.text;
-    }
-
-    render() {
-        return <div ref={el => this.el = el} />;
-    }
+  render() {
+    const { text } = this.props;
+    return <div className='comment' dangerouslySetInnerHTML={{__html: text}} />;
+  }
 }
