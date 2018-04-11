@@ -49,7 +49,11 @@ export default class Email extends PureComponent {
             <![endif]-->
           `}
         />
-        <div style={{ maxWidth }}>
+        <div style={{
+            maxWidth,
+            marginTop: '20px',
+          }}
+        >
           { children }
         </div>
         <Comment

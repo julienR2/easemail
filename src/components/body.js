@@ -19,7 +19,12 @@ export default class Body extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <Table style={{ backgroundColor: 'white', ...style }}>
+      <Table style={{
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          ...style
+        }}
+      >
         {React.Children.map(
           children,
           (child) => (
