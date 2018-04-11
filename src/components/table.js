@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Row from './row';
 import Column from './column';
 
+import defaultStyles from '../defaultStyles';
+
 export default class Body extends PureComponent {
   static propTypes = {
     children: PropTypes.any,
@@ -14,7 +16,7 @@ export default class Body extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <table style={style} cellSpacing="0" cellPadding="0" border="0" align="center" width="100%">
+      <table style={{ ...defaultStyles.table, ...style }} cellSpacing="0" cellPadding="0" border="0" align="center" width="100%">
         <tbody>
           <Row>
             <Column style={{
@@ -22,7 +24,7 @@ export default class Body extends PureComponent {
               }}
             >
               <table
-                style={{ maxWidth: '504px' }}
+                style={{ ...defaultStyles.table, maxWidth: '504px' }}
                 cellSpacing="0"
                 cellPadding="0"
                 border="0"

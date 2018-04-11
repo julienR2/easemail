@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import defaultStyles from '../defaultStyles';
+
 export default class Column extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -15,7 +17,7 @@ export default class Column extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <td style={style}>
+      <td style={{...defaultStyles.column, ...style}}>
         { children }
       </td>
     );
