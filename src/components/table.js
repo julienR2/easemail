@@ -1,14 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Row from './row';
-
 export default class Body extends PureComponent {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.instanceOf(Row)),
-      PropTypes.instanceOf(Row)
-    ]),
+    children: PropTypes.any,
     style: PropTypes.object,
   };
 

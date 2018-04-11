@@ -24,7 +24,10 @@ export default class Body extends PureComponent {
           children,
           (child) => (
             <Row>
-              <Column>
+              <Column style={{
+                  textAlign: 'center',
+                }}
+              >
                 { child }
               </Column>
             </Row>

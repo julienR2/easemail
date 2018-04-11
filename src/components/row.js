@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Column from './column';
-
 export default class Row extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.instanceOf(Column)),
-      PropTypes.instanceOf(Column)
+      PropTypes.arrayOf(PropTypes.object),
+      PropTypes.object
     ]),
     style: PropTypes.object,
   };

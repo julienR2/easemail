@@ -1,28 +1,30 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class H1 extends PureComponent {
+export default class ListItem extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
+    style: PropTypes.object,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
 
     return (
-      <h1
+      <li
         style={{
-          fontSize: 50,
-          fontWeight: 'bold',
-          lineHeight: '55px',
+          paddingLeft: '4px',
+          fontSize: '28px',
+          lineHeight: '32px',
+          ...style,
         }}
       >
         { children }
-      </h1>
+      </li>
     );
   }
 }
