@@ -3,27 +3,31 @@ import PropTypes from 'prop-types';
 
 import defaultStyles from '../defaultStyles';
 
-export default class H1 extends PureComponent {
+export default class Text extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
+    style: PropTypes.object,
+    secondary: PropTypes.bool,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, style, secondary } = this.props;
 
     return (
-      <h1
+      <p
         style={{
           ...defaultStyles.common_text,
-          ...defaultStyles.h1,
+          ...defaultStyles.text,
+          ...(secondary && defaultStyles.text_secondary),
+          ...style,
         }}
       >
         { children }
-      </h1>
+      </p>
     );
   }
 }

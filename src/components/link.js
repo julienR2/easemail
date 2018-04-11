@@ -3,27 +3,33 @@ import PropTypes from 'prop-types';
 
 import defaultStyles from '../defaultStyles';
 
-export default class H1 extends PureComponent {
+export default class Link extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
+    style: PropTypes.string,
+    href: PropTypes.string,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, style, href } = this.props;
 
     return (
-      <h1
+      <a
         style={{
           ...defaultStyles.common_text,
-          ...defaultStyles.h1,
+          ...defaultStyles.link,
+          ...style,
         }}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         { children }
-      </h1>
+      </a>
     );
   }
 }

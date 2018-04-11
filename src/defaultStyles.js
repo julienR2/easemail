@@ -8,13 +8,14 @@ export default {
   },
   email: {
     maxWidth: '600px',
-    marginTop: '20px',
+    margin: '20px 0',
   },
   body: {
     backgroundColor: 'white',
     borderRadius: '8px',
+    padding: '52px 0 48px',
   },
-  text: {
+  common_text: {
     textAlign: 'center',
     msoHeightRule: 'exactly',
     fontFamily: `'Source Sans Pro', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif'`,
@@ -24,10 +25,16 @@ export default {
   },
   h1: {
     fontSize: 50,
-    fontWeight: 'bold',
     lineHeight: '55px',
-    marginTop: '52px',
-    marginBottom: '42px',
+    fontWeight: 'bold',
+    margin: '0 0 42px 0',
+  },
+  text: {
+    margin: '24px 0 0',
+  },
+  text_secondary: {
+    fontSize: 18,
+    lineHeight: '32px',
   },
   table: {
     borderSpacing: '0 !important',
@@ -49,11 +56,35 @@ export default {
   listItem: {
     paddingLeft: '4px',
     fontSize: '28px',
-    lineHeight: '32px',
+    lineHeight: '30px',
     margin: '0 0 16px',
     textAlign: 'left',
   },
   listItem_lastChild: {
     margin: '0',
+  },
+  button: {
+    display: 'inline-block',
+    textDecoration: 'none',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    fontSize: '24px',
+    lineHeight: '32px',
+    fontWeight: '600',
+    border: 'none',
+    padding: '20px 24px',
+    backgroundColor: '#E74484',
+    maxWidth: '328px',
+    borderRadius: '8px',
+    margin: '52px 0 0',
+  },
+  link: {
+    display: 'inline-block',
+    textDecoration: 'none',
+  },
+  image: {
+    '-ms-interpolation-mode': 'bicubic',
+    width: '100%',
+    height: 'auto',
   }
 }

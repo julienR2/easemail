@@ -19,7 +19,7 @@ export default class ListItem extends PureComponent {
     return (
       <li
         style={{
-          ...defaultStyles.text,
+          ...defaultStyles.common_text,
           ...defaultStyles.listItem,
           ...style,
         }}

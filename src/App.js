@@ -5,6 +5,10 @@ import H1 from './components/h1';
 import Body from './components/body';
 import List from './components/list';
 import ListItem from './components/listItem';
+import Button from './components/button';
+import Link from './components/link';
+import Image from './components/image';
+import Text from './components/text';
 
 export default class App extends PureComponent {
 
@@ -39,6 +43,15 @@ export default class App extends PureComponent {
               Marchés &lt;90k€ inclus
             </ListItem>
           </List>
+          <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta">
+            Parcourir les 10 000 + appels d'offres
+          </Button>
+          <Text secondary>
+            3574 appels d'offres publiés aujourd'hui !
+          </Text>
+          <Link style={{marginTop: '80px'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
+            <Image style={{width: '160px'}} alt="Logo_NouMa" src={require('./assets/images/logo_white.png')} />
+          </Link>
         </Body>
       </Email>
     )
