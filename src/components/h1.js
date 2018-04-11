@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import defaultStyles from '../defaultStyles';
+
 export default class H1 extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -16,9 +18,8 @@ export default class H1 extends PureComponent {
     return (
       <h1
         style={{
-          fontSize: 50,
-          fontWeight: 'bold',
-          lineHeight: '55px',
+          ...defaultStyles.text,
+          ...defaultStyles.h1,
         }}
       >
         { children }

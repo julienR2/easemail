@@ -5,6 +5,8 @@ import Table from './table';
 import Row from './row';
 import Column from './column';
 
+import defaultStyles from '../defaultStyles';
+
 export default class Body extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -20,8 +22,7 @@ export default class Body extends PureComponent {
 
     return (
       <Table style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
+          ...defaultStyles.body,
           ...style
         }}
       >

@@ -15,7 +15,14 @@ export default class App extends PureComponent {
   render() {
     return (
       <Email ref={email => this.email = email}>
-        <Body>
+        <Body style={{
+            backgroundImage: `url(${require('./assets/images/background.jpg')})`,
+            backgroundColor: '#4C5975',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
           <H1>
             Vos marchés&nbsp;publics
             en 1 clic <br />

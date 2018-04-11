@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import defaultStyles from '../defaultStyles';
+
 export default class ListItem extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -17,9 +19,8 @@ export default class ListItem extends PureComponent {
     return (
       <li
         style={{
-          paddingLeft: '4px',
-          fontSize: '28px',
-          lineHeight: '32px',
+          ...defaultStyles.text,
+          ...defaultStyles.listItem,
           ...style,
         }}
       >

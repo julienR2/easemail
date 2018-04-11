@@ -4,6 +4,8 @@ import ReactDOMServer from 'react-dom/server';
 
 import Comment from './comment';
 
+import defaultStyles from '../defaultStyles';
+
 export default class Email extends PureComponent {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -11,12 +13,7 @@ export default class Email extends PureComponent {
       PropTypes.object,
       PropTypes.string,
     ]),
-    maxWidth: PropTypes.number,
   };
-
-  static defaultProps = {
-    maxWidth: 600,
-  }
 
   renderEmail() {
     return `
@@ -36,7 +33,7 @@ export default class Email extends PureComponent {
   }
 
   render() {
-    const { children, maxWidth } = this.props;
+    const { children } = this.props;
 
     return (
       <center>
@@ -45,15 +42,11 @@ export default class Email extends PureComponent {
             <!--[if (gte mso 9)|(IE)]>
               <table cellspacing="0" cellpadding="0" border="0" align="center">
                 <tr>
-                  <td width="${maxWidth}">
+                  <td width="${defaultStyles.email.maxWidth}">
             <![endif]-->
           `}
         />
-        <div style={{
-            maxWidth,
-            marginTop: '20px',
-          }}
-        >
+        <div style={defaultStyles.email}>
           { children }
         </div>
         <Comment
