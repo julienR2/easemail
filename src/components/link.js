@@ -12,16 +12,18 @@ export default class Link extends PureComponent {
     ]),
     style: PropTypes.string,
     href: PropTypes.string,
+    underline: PropTypes.bool,
   };
 
   render() {
-    const { children, style, href } = this.props;
+    const { children, style, href, underline } = this.props;
 
     return (
       <a
         style={{
           ...defaultStyles.common_text,
           ...defaultStyles.link,
+          ...(underline && defaultStyles.link_underline),
           ...style,
         }}
         href={href}

@@ -14,9 +14,16 @@ export default class Body extends PureComponent {
 
   render() {
     const { children, style } = this.props;
-
+    
     return (
-      <table style={{ ...defaultStyles.table, ...style }} cellSpacing="0" cellPadding="0" border="0" align="center" width="100%">
+      <table
+        style={{ ...defaultStyles.table, ...style }}
+        cellSpacing="0"
+        cellPadding="0"
+        border="0"
+        align="center"
+        width={(style && style.width) || defaultStyles.table.width}
+      >
         <tbody>
           <Row>
             <Column style={{
@@ -24,12 +31,12 @@ export default class Body extends PureComponent {
               }}
             >
               <table
-                style={{ ...defaultStyles.table, maxWidth: '504px' }}
+                style={{ ...defaultStyles.table, width: style.width, maxWidth: '504px' }}
                 cellSpacing="0"
                 cellPadding="0"
                 border="0"
                 align="center"
-                width="100%"
+                width={(style && style.width) || defaultStyles.table.width}
               >
                 <tbody>
                   { children }

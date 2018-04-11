@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import Email from './components/email';
 import H1 from './components/h1';
 import Body from './components/body';
+import Footer from './components/footer';
 import List from './components/list';
 import ListItem from './components/listItem';
 import Button from './components/button';
@@ -28,7 +29,7 @@ export default class App extends PureComponent {
           }}
         >
           <H1>
-            Vos marchés&nbsp;publics
+            Vos marchés publics
             en 1 clic <br />
             DCE garantis
           </H1>
@@ -53,6 +54,8 @@ export default class App extends PureComponent {
             <Image style={{width: '160px'}} alt="Logo_NouMa" src={require('./assets/images/logo_white.png')} />
           </Link>
         </Body>
+
+        <Footer />
       </Email>
     )
   }

@@ -42,6 +42,8 @@ export default {
     margin: '0 auto !important',
     msoTableLspace: '0pt !important',
     msoTableRspace: '0pt !important',
+    textAlign: 'center',
+    width: '100%',
   },
   column: {
     msoTableLspace: '0pt !important',
@@ -79,8 +81,12 @@ export default {
     margin: '52px 0 0',
   },
   link: {
+    cursor: 'pointer',
     display: 'inline-block',
     textDecoration: 'none',
+  },
+  link_underline: {
+    textDecoration: 'underline',
   },
   image: {
     '-ms-interpolation-mode': 'bicubic',
