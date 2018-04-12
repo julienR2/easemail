@@ -1,4 +1,7 @@
 export default {
+  _: {
+    fontFamily: "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif' !important",
+  },
   html: {
     margin: '0 auto !important',
     padding: '0 !important',
@@ -13,24 +16,24 @@ export default {
   body: {
     backgroundColor: 'white',
     borderRadius: '8px',
-    padding: '52px 0 48px',
+    padding: '52px 16px 48px',
   },
   common_text: {
     textAlign: 'center',
     msoHeightRule: 'exactly',
-    fontFamily: `'Source Sans Pro', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif'`,
+    fontFamily: "'Source Sans Pro', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif'",
     color: '#FFFFFF',
     fontSize: '28px',
     fontWeight: 400,
+    MsTextSizeAdjust: '100%',
+    WebkitTextSizeAdjust: '100%',
+    margin: '0',
   },
   h1: {
     fontSize: 50,
     lineHeight: '55px',
     fontWeight: 'bold',
-    margin: '0 0 42px 0',
-  },
-  text: {
-    margin: '24px 0 0',
+    margin: '0',
   },
   text_secondary: {
     fontSize: 18,
@@ -48,6 +51,7 @@ export default {
   column: {
     msoTableLspace: '0pt !important',
     msoTableRspace: '0pt !important',
+    textAlign: 'center',
   },
   list: {
     display: 'inline-block',
@@ -80,7 +84,6 @@ export default {
     backgroundColor: '#E74484',
     maxWidth: '328px',
     borderRadius: '8px',
-    margin: '52px 0 0',
   },
   link: {
     cursor: 'pointer',

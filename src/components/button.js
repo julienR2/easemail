@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Comment from './comment';
@@ -13,19 +13,19 @@ export default class Button extends PureComponent {
       PropTypes.object,
       PropTypes.string,
     ]),
+    style: PropTypes.object,
     href: PropTypes.string,
-    style: PropTypes.string,
   };
 
   render() {
     const { children, style, href } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <Comment
           text={`
             <!--[if mso]>
-      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: 100%, height: 100%, v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${defaultStyles.button.backgroundColor}">
+      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: ${defaultStyles.button.maxWidth}; height: calc(100% + 40px); v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${defaultStyles.button.backgroundColor}">
       					<w:anchorlock/>
       		    	<center>
       		  <![endif]-->
@@ -33,10 +33,7 @@ export default class Button extends PureComponent {
         />
 
         <Link
-          style={{
-            ...defaultStyles.button,
-            ...style,
-          }}
+          style={{ ...defaultStyles.button, ...style }}
           href={href}
         >
           { children }
@@ -50,7 +47,7 @@ export default class Button extends PureComponent {
       			<![endif]-->
           `}
         />
-      </div>
+      </Fragment>
     );
   }
 }

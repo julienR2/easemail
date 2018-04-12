@@ -28,7 +28,7 @@ export default class App extends PureComponent {
             backgroundPosition: 'center',
           }}
         >
-          <H1>
+          <H1 style={{margin: '0 0 42px 0'}}>
             Vos marchés publics
             en 1 clic <br />
             DCE garantis
@@ -44,13 +44,13 @@ export default class App extends PureComponent {
               Marchés &lt;90k€ inclus
             </ListItem>
           </List>
-          <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta">
+          <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta" style={{margin: '52px 0 0'}}>
             Parcourir les 10 000 + appels d'offres
           </Button>
-          <Text secondary>
+          <Text secondary style={{margin: '24px 0 0'}}>
             3574 appels d'offres publiés aujourd'hui !
           </Text>
-          <Link style={{paddingTop: '80px'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
+          <Link style={{margin: '80px 0 0'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
             <Image style={{width: '160px'}} alt="Logo_NouMa" src="./assets/images/logo_white.png" />
           </Link>
         </Body>

@@ -21,7 +21,6 @@ export default class Text extends PureComponent {
       <p
         style={{
           ...defaultStyles.common_text,
-          ...defaultStyles.text,
           ...(secondary && defaultStyles.text_secondary),
           ...style,
         }}

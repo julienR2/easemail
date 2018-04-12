@@ -28,16 +28,17 @@ export default class Body extends PureComponent {
       >
         {React.Children.map(
           children,
-          (child) => (
-            <Row>
-              <Column style={{
-                  textAlign: 'center',
-                }}
-              >
-                { child }
-              </Column>
-            </Row>
-          )
+          (child) => {
+            const { margin, ...style} = child.props.style || {};
+
+            return (
+              <Row>
+                <Column style={{padding: margin}}>
+                  { React.cloneElement(child, { style }) }
+                </Column>
+              </Row>
+            )
+          }
         )}
       </Table>
     );
