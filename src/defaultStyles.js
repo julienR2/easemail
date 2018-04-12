@@ -8,7 +8,7 @@ export default {
   },
   email: {
     maxWidth: '600px',
-    margin: '20px 0',
+    padding: '20px 0',
   },
   body: {
     backgroundColor: 'white',
@@ -51,7 +51,7 @@ export default {
   },
   list: {
     display: 'inline-block',
-    margin: 0,
+    margin: '0',
     padding: '0 0 0 28px',
     textAlign: 'left',
   },
@@ -89,7 +89,7 @@ export default {
     textDecoration: 'underline',
   },
   image: {
-    '-ms-interpolation-mode': 'bicubic',
+    msInterpolationMode: 'bicubic',
     width: '100%',
     height: 'auto',
   }

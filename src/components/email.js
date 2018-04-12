@@ -21,6 +21,7 @@ export default class Email extends PureComponent {
       ${ReactDOMServer.renderToStaticMarkup(this.render())}
     `.replace(/<div class="comment">([\s\S]*?)<\/div>/g, '$1')
      .replace(/<div class="toRemove">([\s\S]*?)<\/div>/g, '$1')
+     .replace(/(margin:)/g, 'Margin:')
   }
 
   render() {

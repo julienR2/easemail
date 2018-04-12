@@ -10,7 +10,7 @@ export default class Link extends PureComponent {
       PropTypes.object,
       PropTypes.string,
     ]),
-    style: PropTypes.string,
+    style: PropTypes.object,
     href: PropTypes.string,
     underline: PropTypes.bool,
   };

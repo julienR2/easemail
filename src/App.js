@@ -50,7 +50,7 @@ export default class App extends PureComponent {
           <Text secondary>
             3574 appels d'offres publiés aujourd'hui !
           </Text>
-          <Link style={{marginTop: '80px'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
+          <Link style={{paddingTop: '80px'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
             <Image style={{width: '160px'}} alt="Logo_NouMa" src={require('./assets/images/logo_white.png')} />
           </Link>
         </Body>

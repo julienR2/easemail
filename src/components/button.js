@@ -25,7 +25,7 @@ export default class Button extends PureComponent {
         <Comment
           text={`
             <!--[if mso]>
-      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${defaultStyles.button.backgroundColor}">
+      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: 100%, height: 100%, v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${defaultStyles.button.backgroundColor}">
       					<w:anchorlock/>
       		    	<center>
       		  <![endif]-->

@@ -21,7 +21,7 @@ export default class Footer extends PureComponent {
       color: '#8893a9',
       fontSize: '16px',
       lineHeight: '25px',
-      marginTop: 0,
+      margin: '0',
     };
 
     return (
@@ -73,7 +73,7 @@ export default class Footer extends PureComponent {
         <Row>
           <Column>
             <Text style={textStyle}>
-              Si vous ne souhaitez plus recevoir d’email de NouMa, <Link underline href style={textStyle}>cliquez ici</Link>
+              Si vous ne souhaitez plus recevoir d’email de NouMa, <Link underline href="." style={textStyle}>cliquez ici</Link>
             </Text>
           </Column>
         </Row>
