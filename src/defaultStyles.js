@@ -61,6 +61,8 @@ export default {
     lineHeight: '30px',
     margin: '0 0 16px',
     textAlign: 'left',
+    msoSpecialFormat: 'bullet',
+    listStyle: 'disc outside',
   },
   listItem_lastChild: {
     margin: '0',
