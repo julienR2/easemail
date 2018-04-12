@@ -43,17 +43,17 @@ export default class Footer extends PureComponent {
               <Row>
                 <Column style={{paddingRight: '44px'}}>
                   <Link href="https://www.linkedin.com/organization/6642247">
-                    <Image style={{width: '32px'}} src={require('../assets/images/linkedin.png')} alt="linkedin" />
+                    <Image style={{width: '32px'}} src="./assets/images/linkedin.png" alt="linkedin" />
                   </Link>
                 </Column>
                 <Column style={{paddingRight: '44px'}}>
                   <Link href="https://www.facebook.com/NouMa-177554099409101">
-                    <Image style={{width: '32px'}} src={require('../assets/images/facebook.png')} alt="facebook" />
+                    <Image style={{width: '32px'}} src="./assets/images/facebook.png" alt="facebook" />
                   </Link>
                 </Column>
                 <Column>
                   <Link href="https://twitter.com/NouMA_fr">
-                    <Image style={{width: '32px'}} src={require('../assets/images/twitter.png')} alt="twitter" />
+                    <Image style={{width: '32px'}} src="./assets/images/twitter.png" alt="twitter" />
                   </Link>
                 </Column>
               </Row>

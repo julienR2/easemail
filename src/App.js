@@ -21,7 +21,7 @@ export default class App extends PureComponent {
     return (
       <Email ref={email => this.email = email}>
         <Body style={{
-            backgroundImage: `url(${require('./assets/images/background.jpg')})`,
+            backgroundImage: 'url(./assets/images/background.jpg)',
             backgroundColor: '#4C5975',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -51,7 +51,7 @@ export default class App extends PureComponent {
             3574 appels d'offres publiés aujourd'hui !
           </Text>
           <Link style={{paddingTop: '80px'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
-            <Image style={{width: '160px'}} alt="Logo_NouMa" src={require('./assets/images/logo_white.png')} />
+            <Image style={{width: '160px'}} alt="Logo_NouMa" src="./assets/images/logo_white.png" />
           </Link>
         </Body>
 
