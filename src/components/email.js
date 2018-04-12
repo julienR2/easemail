@@ -35,7 +35,6 @@ export default class Email extends PureComponent {
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
           <Comment
             text={`
               <!--[if mso]>
@@ -47,6 +46,9 @@ export default class Email extends PureComponent {
             	<![endif]-->
             `}
           />
+          <Comment text="<!--[if !mso]>" />
+          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+          <Comment text="<![endif]-->" />
         </head>
 
         <body style={defaultStyles.html}>
