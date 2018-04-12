@@ -21,13 +21,13 @@ export default class Button extends PureComponent {
   render() {
     const { children, style, href } = this.props;
     const styles = { ...defaultStyles.button, ...style };
-    
+
     return (
       <Fragment>
         <Comment
           text={`
             <!--[if mso]>
-      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: ${styles.maxWidth}; height: calc(100% + ${getPaddings(styles.padding).top} + ${getPaddings(styles.padding).bottom}); v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${styles.backgroundColor}">
+      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: 376px; height: calc(100% + ${getPaddings(styles.padding).top} + ${getPaddings(styles.padding).bottom}); v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${styles.backgroundColor}">
       					<w:anchorlock/>
       		    	<center>
       		  <![endif]-->

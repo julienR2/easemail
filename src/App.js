@@ -45,7 +45,7 @@ export default class App extends PureComponent {
             </ListItem>
           </List>
           <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta" style={{margin: '52px 0 0'}}>
-            Parcourir les 10 000 + appels d'offres
+            Parcourir les 10&nbsp;000&nbsp;+ appels d'offres
           </Button>
           <Text secondary style={{margin: '24px 0 0'}}>
             3574 appels d'offres publiés aujourd'hui !
