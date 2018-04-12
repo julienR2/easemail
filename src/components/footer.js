@@ -73,13 +73,6 @@ export default class Footer extends PureComponent {
         <Row>
           <Column>
             <Text style={textStyle}>
-              Si vous ne souhaitez plus recevoir d’email de NouMa, <Link underline href="." style={textStyle}>cliquez ici</Link>
-            </Text>
-          </Column>
-        </Row>
-        <Row>
-          <Column>
-            <Text style={textStyle}>
               NouMa © {new Date().getFullYear()} Tous droits réservés
             </Text>
           </Column>
