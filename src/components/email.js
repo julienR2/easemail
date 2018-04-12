@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import Comment from './comment';
 
-import jsToCss from '../utils/jsToCss';
+import { jsToCss } from '../utils';
 import defaultStyles from '../defaultStyles';
 
 export default class Email extends PureComponent {
