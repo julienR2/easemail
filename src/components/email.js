@@ -5,7 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import Comment from './comment';
 
 import { jsToCss } from '../utils';
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Email extends PureComponent {
   static propTypes = {
@@ -29,54 +29,58 @@ export default class Email extends PureComponent {
     const { children } = this.props;
 
     return (
-      <html style={defaultStyles.html} lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+      <ThemeContext.Consumer>
+        {theme => (
+          <html style={theme.html} lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <Comment
-            text={`
-              <!--[if mso]>
-            		<style>
-                  * {
-                    ${jsToCss(defaultStyles._)}
-                  }
-            		</style>
-            	<![endif]-->
-            `}
-          />
-          <Comment text="<!--[if !mso]>" />
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
-          <Comment text="<![endif]-->" />
-        </head>
+            <head>
+              <meta charSet="utf-8" />
+              <meta name="viewport" content="width=device-width" />
+              <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+              <Comment
+                text={`
+                  <!--[if mso]>
+                		<style>
+                      * {
+                        ${jsToCss(theme._)}
+                      }
+                		</style>
+                	<![endif]-->
+                `}
+              />
+              <Comment text="<!--[if !mso]>" />
+              <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+              <Comment text="<![endif]-->" />
+            </head>
 
-        <body style={defaultStyles.html}>
-          <center>
-            <Comment
-              text={`
-                <!--[if (gte mso 9)|(IE)]>
-                  <table cellspacing="0" cellpadding="0" border="0" align="center">
-                    <tr>
-                      <td width="${defaultStyles.email.maxWidth}">
-                <![endif]-->
-              `}
-            />
-            <div style={defaultStyles.email}>
-              { children }
-            </div>
-            <Comment
-              text="
-                <!--[if (gte mso 9)|(IE)]>
-                      </td>
-                    </tr>
-                  </table>
-                <![endif]-->
-              "
-            />
-          </center>
-        </body>
-      </html>
+            <body style={theme.html}>
+              <center>
+                <Comment
+                  text={`
+                    <!--[if (gte mso 9)|(IE)]>
+                      <table cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tr>
+                          <td width="${theme.email.maxWidth}">
+                    <![endif]-->
+                  `}
+                />
+                <div style={theme.email}>
+                  { children }
+                </div>
+                <Comment
+                  text="
+                    <!--[if (gte mso 9)|(IE)]>
+                          </td>
+                        </tr>
+                      </table>
+                    <![endif]-->
+                  "
+                />
+              </center>
+            </body>
+          </html>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

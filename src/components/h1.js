@@ -1,7 +1,8 @@
+/* eslint-disable react/no-danger */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class H1 extends PureComponent {
   static propTypes = {
@@ -16,14 +17,17 @@ export default class H1 extends PureComponent {
     const { children } = this.props;
 
     return (
-      <h1
-        style={{
-          ...defaultStyles.common_text,
-          ...defaultStyles.h1,
-        }}
-      >
-        { children }
-      </h1>
+      <ThemeContext.Consumer>
+        {theme => (
+          <h1
+            style={{
+              ...theme.common_text,
+              ...theme.h1,
+            }}
+            dangerouslySetInnerHTML={{__html: children}}
+          />
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

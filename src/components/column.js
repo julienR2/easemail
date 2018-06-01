@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Column extends PureComponent {
   static propTypes = {
@@ -17,9 +17,13 @@ export default class Column extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <td style={{...defaultStyles.column, ...style}}>
-        { children }
-      </td>
+      <ThemeContext.Consumer>
+        {theme => (
+          <td style={{...theme.column, ...style}}>
+            { children }
+          </td>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

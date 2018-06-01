@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class List extends PureComponent {
   static propTypes = {
@@ -13,20 +13,24 @@ export default class List extends PureComponent {
     const count = React.Children.count(children) - 1;
 
     return (
-      <ul
-        style={defaultStyles.list}
-      >
-        {React.Children.map(
-          children,
-          (child, index) => (index === count) ? React.cloneElement(child, {
-            ...child.props,
-            style: {
-              ...defaultStyles.listItem_lastChild,
-              ...child.props.style,
-            }
-          }) : child,
+      <ThemeContext.Consumer>
+        {theme => (
+          <ul
+            style={theme.list}
+          >
+            {React.Children.map(
+              children,
+              (child, index) => (index === count) ? React.cloneElement(child, {
+                ...child.props,
+                style: {
+                  ...theme.listItem_lastChild,
+                  ...child.props.style,
+                }
+              }) : child,
+            )}
+          </ul>
         )}
-      </ul>
+      </ThemeContext.Consumer>
     );
   }
 }

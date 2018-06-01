@@ -1,4 +1,6 @@
-export default {
+import React from 'react';
+
+export const defaultTheme = {
   _: {
     fontFamily: "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif' !important",
   },
@@ -99,3 +101,5 @@ export default {
     height: 'auto',
   }
 }
+
+export const ThemeContext = React.createContext(defaultTheme);

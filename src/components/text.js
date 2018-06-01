@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Text extends PureComponent {
   static propTypes = {
@@ -18,15 +18,19 @@ export default class Text extends PureComponent {
     const { children, style, secondary } = this.props;
 
     return (
-      <p
-        style={{
-          ...defaultStyles.common_text,
-          ...(secondary && defaultStyles.text_secondary),
-          ...style,
-        }}
-      >
-        { children }
-      </p>
+      <ThemeContext.Consumer>
+        {theme => (
+          <p
+            style={{
+              ...theme.common_text,
+              ...(secondary && theme.text_secondary),
+              ...style,
+            }}
+          >
+            { children }
+          </p>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

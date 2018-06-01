@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Image extends PureComponent {
   static propTypes = {
@@ -14,17 +14,21 @@ export default class Image extends PureComponent {
     const { style, src, alt } = this.props;
 
     return (
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          ...defaultStyles.image,
-          ...style,
-        }}
-        border="0"
-        width={(style && style.width) || defaultStyles.image.width}
-        height={(style && style.height) || defaultStyles.image.height}
-      />
+      <ThemeContext.Consumer>
+        {theme => (
+          <img
+            src={src}
+            alt={alt}
+            style={{
+              ...theme.image,
+              ...style,
+            }}
+            border="0"
+            width={(style && style.width) || theme.image.width}
+            height={(style && style.height) || theme.image.height}
+          />
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

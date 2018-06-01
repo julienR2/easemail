@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class ListItem extends PureComponent {
   static propTypes = {
@@ -17,15 +17,19 @@ export default class ListItem extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <li
-        style={{
-          ...defaultStyles.common_text,
-          ...defaultStyles.listItem,
-          ...style,
-        }}
-      >
-        { children }
-      </li>
+      <ThemeContext.Consumer>
+        {theme => (
+          <li
+            style={{
+              ...theme.common_text,
+              ...theme.listItem,
+              ...style,
+            }}
+          >
+            { children }
+          </li>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

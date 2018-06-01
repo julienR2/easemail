@@ -10,6 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
+import _ from 'lodash';
 
 import Template1 from './containers/template1';
 import Template2 from './containers/template2';
@@ -34,13 +35,37 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    console.log('templates[0]', templates[0]);
     this.state = {
-      selectedTemplate: templates[0],
+      selectedTemplate: {
+        ...templates[0],
+        propTypes: templates[0].component.defaultProps,
+      },
     }
   }
 
   onSelectTemplate = template => () => {
-    this.setState({ selectedTemplate: template });
+    this.setState({
+      selectedTemplate: {
+        ...template,
+        propTypes: template.component.defaultProps,
+      }
+    });
+  }
+
+  onPropTypesChange = (key, value) => {
+    console.log('key', key)
+    console.log('new value', value);
+    const { propTypes } = this.state.selectedTemplate;
+    let newProptypes = { ...propTypes };
+    newProptypes[key] = value;
+
+    this.setState({
+      selectedTemplate: {
+        ...this.state.selectedTemplate,
+        propTypes: newProptypes,
+      }
+    });
   }
 
   render() {
@@ -52,7 +77,7 @@ class App extends PureComponent {
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit" noWrap>
-              Clipped drawer
+              Easymail
             </Typography>
           </Toolbar>
         </AppBar>
@@ -67,7 +92,11 @@ class App extends PureComponent {
                 button
                 key={template.name}
                 onClick={this.onSelectTemplate(template)}
-                className={(template.name === selectedTemplate.name) && classes.listItemSelected}
+                className={
+                  (template.name === selectedTemplate.name)
+                    ? classes.listItemSelected
+                  : ''
+                }
               >
                 <ListItemText primary={template.name} />
               </ListItem>
@@ -77,7 +106,7 @@ class App extends PureComponent {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           { selectedTemplate ? (
-            <selectedTemplate.component />
+            <selectedTemplate.component {...selectedTemplate.propTypes} />
           ) : (
             <Typography noWrap>
               Choose a template on the left
@@ -96,16 +125,24 @@ class App extends PureComponent {
                 <ListSubheader>{selectedTemplate.name}</ListSubheader>
               }
             >
-              <ListItem>
-                <TextField
-                  id="multiline-static"
-                  label="Multiline"
-                  multiline
-                  defaultValue="Default Value"
-                  className={classes.textField}
-                  margin="normal"
-                />
-              </ListItem>
+              {_.keys(selectedTemplate.propTypes).map(key => {
+                console.log('key', key);
+                console.log('selectedTemplate.propTypes[key]', selectedTemplate.propTypes[key]);
+                return (
+                  <ListItem
+                    key={key}
+                  >
+                    <TextField
+                      id="multiline-static"
+                      label={key}
+                      multiline
+                      defaultValue={selectedTemplate.propTypes[key]}
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(event) => this.onPropTypesChange(key, event.target.value)}
+                    />
+                  </ListItem>
+              )})}
             </List>
           </Drawer>
         )}

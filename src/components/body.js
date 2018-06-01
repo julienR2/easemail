@@ -5,7 +5,7 @@ import Table from './table';
 import Row from './row';
 import Column from './column';
 
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Body extends PureComponent {
   static propTypes = {
@@ -21,26 +21,30 @@ export default class Body extends PureComponent {
     const { children, style } = this.props;
 
     return (
-      <Table style={{
-          ...defaultStyles.body,
-          ...style
-        }}
-      >
-        {React.Children.map(
-          children,
-          (child) => {
-            const { margin, ...style} = child.props.style || {};
+      <ThemeContext.Consumer>
+        {theme => (
+          <Table style={{
+              ...theme.body,
+              ...style
+            }}
+          >
+            {React.Children.map(
+              children,
+              (child) => {
+                const { margin, ...style} = child.props.style || {};
 
-            return (
-              <Row>
-                <Column style={{padding: margin}}>
-                  { React.cloneElement(child, { style }) }
-                </Column>
-              </Row>
-            )
-          }
+                return (
+                  <Row>
+                    <Column style={{padding: margin}}>
+                      { React.cloneElement(child, { style }) }
+                    </Column>
+                  </Row>
+                )
+              }
+            )}
+          </Table>
         )}
-      </Table>
+      </ThemeContext.Consumer>
     );
   }
 }

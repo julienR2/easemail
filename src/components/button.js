@@ -5,7 +5,7 @@ import Comment from './comment';
 import Link from './link';
 
 import { getPaddings } from '../utils';
-import defaultStyles from '../defaultStyles';
+import { ThemeContext } from '../defaultTheme';
 
 export default class Button extends PureComponent {
   static propTypes = {
@@ -20,36 +20,39 @@ export default class Button extends PureComponent {
 
   render() {
     const { children, style, href } = this.props;
-    const styles = { ...defaultStyles.button, ...style };
 
     return (
-      <Fragment>
-        <Comment
-          text={`
-            <!--[if mso]>
-      		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: 376px; height: calc(100% + ${getPaddings(styles.padding).top} + ${getPaddings(styles.padding).bottom}); v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${styles.backgroundColor}">
-      					<w:anchorlock/>
-      		    	<center>
-      		  <![endif]-->
-          `}
-        />
+      <ThemeContext.Consumer>
+        {theme => (
+          <Fragment>
+            <Comment
+              text={`
+                <!--[if mso]>
+          		  	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="width: 376px; height: calc(100% + ${getPaddings(({ ...theme.button, ...style }).padding).top} + ${getPaddings(({ ...theme.button, ...style }).padding).bottom}); v-text-anchor: middle;" arcsize="100%" stroke="f" fillcolor="${({ ...theme.button, ...style }).backgroundColor}">
+          					<w:anchorlock/>
+          		    	<center>
+          		  <![endif]-->
+              `}
+            />
 
-        <Link
-          style={styles}
-          href={href}
-        >
-          { children }
-        </Link>
+            <Link
+              style={({ ...theme.button, ...style })}
+              href={href}
+            >
+              { children }
+            </Link>
 
-        <Comment
-          text={`
-            <!--[if mso]>
-      		    	</center>
-      		  	</v:roundrect>
-      			<![endif]-->
-          `}
-        />
-      </Fragment>
+            <Comment
+              text={`
+                <!--[if mso]>
+          		    	</center>
+          		  	</v:roundrect>
+          			<![endif]-->
+              `}
+            />
+          </Fragment>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
