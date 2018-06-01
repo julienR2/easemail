@@ -35,7 +35,6 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    console.log('templates[0]', templates[0]);
     this.state = {
       selectedTemplate: {
         ...templates[0],
@@ -54,8 +53,6 @@ class App extends PureComponent {
   }
 
   onPropTypesChange = (key, value) => {
-    console.log('key', key)
-    console.log('new value', value);
     const { propTypes } = this.state.selectedTemplate;
     let newProptypes = { ...propTypes };
     newProptypes[key] = value;
@@ -125,24 +122,21 @@ class App extends PureComponent {
                 <ListSubheader>{selectedTemplate.name}</ListSubheader>
               }
             >
-              {_.keys(selectedTemplate.propTypes).map(key => {
-                console.log('key', key);
-                console.log('selectedTemplate.propTypes[key]', selectedTemplate.propTypes[key]);
-                return (
-                  <ListItem
-                    key={key}
-                  >
-                    <TextField
-                      id="multiline-static"
-                      label={key}
-                      multiline
-                      defaultValue={selectedTemplate.propTypes[key]}
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(event) => this.onPropTypesChange(key, event.target.value)}
-                    />
-                  </ListItem>
-              )})}
+              {_.keys(selectedTemplate.propTypes).map(key => (
+                <ListItem
+                  key={key}
+                >
+                  <TextField
+                    id="multiline-static"
+                    label={key}
+                    multiline
+                    defaultValue={selectedTemplate.propTypes[key]}
+                    className={classes.textField}
+                    margin="normal"
+                    onChange={(event) => this.onPropTypesChange(key, event.target.value)}
+                  />
+                </ListItem>
+              ))}
             </List>
           </Drawer>
         )}
