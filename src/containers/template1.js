@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
-
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
 import Email from '../components/email';
@@ -16,13 +15,19 @@ import Text from '../components/text';
 
 import { ThemeContext, defaultTheme } from '../defaultTheme';
 
-class Template1 extends PureComponent {
+class Template1 extends Component {
   static propTypes = {
     h1: PropTypes.string,
+    list: PropTypes.array,
   }
 
   static defaultProps = {
     h1: `Vos marchés publics en 1 clic <br /> DCE garantis`,
+    list: [
+      'Accès instantané à tous les DCE',
+      'Alertes, DCE et régions illimitées',
+      'Marchés &lt;90k€ inclus',
+    ],
   }
 
   constructor(props) {
@@ -34,9 +39,9 @@ class Template1 extends PureComponent {
   }
 
   render() {
-    const { h1 } = this.props;
+    const { h1, list } = this.props;
     const { theme } = this.state;
-
+    console.log('list', list);
     return (
       <ThemeContext.Provider value={theme}>
         <Email ref={email => this.email = email}>
@@ -53,15 +58,11 @@ class Template1 extends PureComponent {
             </H1>
 
             <List>
-              <ListItem>
-                Accès instantané à tous les DCE
-              </ListItem>
-              <ListItem>
-                Alertes, DCE et régions illimitées
-              </ListItem>
-              <ListItem>
-                Marchés &lt;90k€ inclus
-              </ListItem>
+              {list.map((elt) => (
+                <ListItem key={elt}>
+                  {elt}
+                </ListItem>
+              ))}
             </List>
             <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta" style={{margin: '52px 0 0'}}>
               Parcourir les 10&nbsp;000&nbsp;+ appels d'offres

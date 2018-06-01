@@ -6,14 +6,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import TextField from '@material-ui/core/TextField';
-import _ from 'lodash';
 
 import Template1 from './containers/template1';
 import Template2 from './containers/template2';
+import Editor from './components/editor';
 
 const templates = [
   {
@@ -52,15 +50,12 @@ class App extends PureComponent {
     });
   }
 
-  onPropTypesChange = (key, value) => {
-    const { propTypes } = this.state.selectedTemplate;
-    let newProptypes = { ...propTypes };
-    newProptypes[key] = value;
-
+  onPropsChange = (propTypes) => {
+    console.log('yo', propTypes);
     this.setState({
       selectedTemplate: {
         ...this.state.selectedTemplate,
-        propTypes: newProptypes,
+        propTypes,
       }
     });
   }
@@ -68,7 +63,7 @@ class App extends PureComponent {
   render() {
     const { classes } = this.props;
     const { selectedTemplate } = this.state;
-
+    console.log('selectedTemplate', selectedTemplate)
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
@@ -111,34 +106,11 @@ class App extends PureComponent {
           )}
         </main>
         { selectedTemplate && (
-          <Drawer
-            variant="permanent"
-            anchor="right"
-            classes={{ paper: classes.drawerPaper }}
-          >
-            <div className={classes.toolbar} />
-            <List
-              subheader={
-                <ListSubheader>{selectedTemplate.name}</ListSubheader>
-              }
-            >
-              {_.keys(selectedTemplate.propTypes).map(key => (
-                <ListItem
-                  key={key}
-                >
-                  <TextField
-                    id="multiline-static"
-                    label={key}
-                    multiline
-                    defaultValue={selectedTemplate.propTypes[key]}
-                    className={classes.textField}
-                    margin="normal"
-                    onChange={(event) => this.onPropTypesChange(key, event.target.value)}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Drawer>
+          <Editor
+            title={selectedTemplate.name}
+            propTypes={selectedTemplate.propTypes}
+            onPropsChange={this.onPropsChange}
+          />
         )}
       </div>
     )
