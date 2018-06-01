@@ -6,8 +6,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
 
 import Template1 from './containers/template1';
 import Template2 from './containers/template2';
@@ -33,7 +35,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      selectedTemplate: null,
+      selectedTemplate: templates[0],
     }
   }
 
@@ -56,9 +58,7 @@ class App extends PureComponent {
         </AppBar>
         <Drawer
           variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
+          classes={{ paper: classes.drawerPaper }}
         >
           <div className={classes.toolbar} />
           <List>
@@ -67,6 +67,7 @@ class App extends PureComponent {
                 button
                 key={template.name}
                 onClick={this.onSelectTemplate(template)}
+                className={(template.name === selectedTemplate.name) && classes.listItemSelected}
               >
                 <ListItemText primary={template.name} />
               </ListItem>
@@ -83,6 +84,31 @@ class App extends PureComponent {
             </Typography>
           )}
         </main>
+        { selectedTemplate && (
+          <Drawer
+            variant="permanent"
+            anchor="right"
+            classes={{ paper: classes.drawerPaper }}
+          >
+            <div className={classes.toolbar} />
+            <List
+              subheader={
+                <ListSubheader>{selectedTemplate.name}</ListSubheader>
+              }
+            >
+              <ListItem>
+                <TextField
+                  id="multiline-static"
+                  label="Multiline"
+                  multiline
+                  defaultValue="Default Value"
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </ListItem>
+            </List>
+          </Drawer>
+        )}
       </div>
     )
   }
@@ -112,6 +138,13 @@ const styles = theme => ({
     minWidth: 0, // So the Typography noWrap works
   },
   toolbar: theme.mixins.toolbar,
+  listItemSelected: {
+    backgroundColor: theme.palette.action.selected,
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
 });
 
 export default withStyles(styles)(App);
