@@ -15,6 +15,7 @@ export const defaultTheme = {
     maxWidth: '600px',
     padding: '20px 0',
   },
+  header: {},
   body: {
     backgroundColor: 'white',
     borderRadius: '8px',
@@ -32,14 +33,15 @@ export const defaultTheme = {
     margin: '0',
   },
   h1: {
-    fontSize: 50,
+    fontSize: '50px',
     lineHeight: '55px',
     fontWeight: 'bold',
     margin: '0',
   },
   text_secondary: {
-    fontSize: 18,
+    fontSize: '18px',
     lineHeight: '32px',
+    textAlign: 'center',
   },
   table: {
     borderSpacing: '0 !important',
@@ -99,6 +101,14 @@ export const defaultTheme = {
     msInterpolationMode: 'bicubic',
     width: '100%',
     height: 'auto',
+  },
+  footer: {},
+  footer_text: {
+    textAlign: 'center',
+    color: '#8893a9',
+    fontSize: '16px',
+    lineHeight: '25px',
+    margin: '0',
   }
 }
 

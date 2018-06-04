@@ -17,12 +17,6 @@ export default class Footer extends PureComponent {
 
   render() {
     const { style } = this.props;
-    const textStyle = {
-      color: '#8893a9',
-      fontSize: '16px',
-      lineHeight: '25px',
-      margin: '0',
-    };
 
     return (
       <ThemeContext.Consumer>
@@ -34,7 +28,7 @@ export default class Footer extends PureComponent {
           >
             <Row>
               <Column style={{paddingTop: '28px'}}>
-                <Text style={textStyle}>
+                <Text style={theme.footer_text}>
                   Suivez-nous sur
                 </Text>
               </Column>
@@ -64,17 +58,17 @@ export default class Footer extends PureComponent {
             </Row>
             <Row>
               <Column style={{paddingTop: '16px'}}>
-                <Link href="tel:0244848600" style={{...textStyle, marginRight: '12px'}}>
+                <Link href="tel:0244848600" style={{...theme.footer_text, marginRight: '12px'}}>
                   Téléphone : 02 44 84 86 00
                 </Link>
-                <Link href="mailto:contact@nouma.fr" style={textStyle}>
+                <Link href="mailto:contact@nouma.fr" style={theme.footer_text}>
                   Mail : contact@nouma.fr
                 </Link>
               </Column>
             </Row>
             <Row>
               <Column>
-                <Text style={textStyle}>
+                <Text style={theme.footer_text}>
                   NouMa © {new Date().getFullYear()} Tous droits réservés
                 </Text>
               </Column>

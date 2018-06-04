@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import ReactHtmlParser from 'react-html-parser';
 
 import { ThemeContext } from '../defaultTheme';
 
@@ -27,7 +29,12 @@ export default class Text extends PureComponent {
               ...style,
             }}
           >
-            { children }
+            {React.Children.map(children, (child) => {
+              if (_.isString(child)) {
+                return ReactHtmlParser(child);
+              }
+              return child;
+            })}
           </p>
         )}
       </ThemeContext.Consumer>
