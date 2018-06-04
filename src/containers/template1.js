@@ -17,12 +17,12 @@ import { ThemeContext, defaultTheme } from '../defaultTheme';
 
 class Template1 extends Component {
   static propTypes = {
-    h1: PropTypes.string,
+    title: PropTypes.string,
     list: PropTypes.array,
   }
 
   static defaultProps = {
-    h1: `Vos marchés publics en 1 clic <br /> DCE garantis`,
+    title: `Vos marchés publics en 1 clic <br /> DCE garantis`,
     list: [
       'Accès instantané à tous les DCE',
       'Alertes, DCE et régions illimitées',
@@ -39,9 +39,9 @@ class Template1 extends Component {
   }
 
   render() {
-    const { h1, list } = this.props;
+    const { title, list } = this.props;
     const { theme } = this.state;
-    console.log('list', list);
+
     return (
       <ThemeContext.Provider value={theme}>
         <Email ref={email => this.email = email}>
@@ -54,7 +54,7 @@ class Template1 extends Component {
             }}
           >
             <H1 style={{margin: '0 0 42px 0'}}>
-              { h1 }
+              { title }
             </H1>
 
             <List>

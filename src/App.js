@@ -51,7 +51,6 @@ class App extends PureComponent {
   }
 
   onPropsChange = (propTypes) => {
-    console.log('yo', propTypes);
     this.setState({
       selectedTemplate: {
         ...this.state.selectedTemplate,
@@ -63,7 +62,7 @@ class App extends PureComponent {
   render() {
     const { classes } = this.props;
     const { selectedTemplate } = this.state;
-    console.log('selectedTemplate', selectedTemplate)
+
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>

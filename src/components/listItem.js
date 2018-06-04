@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
@@ -25,9 +26,8 @@ export default class ListItem extends PureComponent {
               ...theme.listItem,
               ...style,
             }}
-          >
-            { children }
-          </li>
+            dangerouslySetInnerHTML={{__html: children}}
+          />
         )}
       </ThemeContext.Consumer>
     );
