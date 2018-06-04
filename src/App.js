@@ -81,7 +81,7 @@ class App extends PureComponent {
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit" noWrap className={classes.title}>
-              Easymail
+              Easemail
             </Typography>
             <Button color="inherit" onClick={this.onDownload}>
               Download
