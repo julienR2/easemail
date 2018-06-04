@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOMServer from 'react-dom/server';
 
 import Comment from './comment';
 
@@ -15,15 +14,6 @@ export default class Email extends PureComponent {
       PropTypes.string,
     ]),
   };
-
-  renderEmail() {
-    return `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-      ${ReactDOMServer.renderToStaticMarkup(this.render())}
-    `.replace(/<div class="comment">([\s\S]*?)<\/div>/g, '$1')
-     .replace(/(margin:)/g, 'Margin:')
-     .replace(/(\.\/assets\/images\/)/g, 'http://s3.nouma.io/emails/')
-  }
 
   render() {
     const { children } = this.props;

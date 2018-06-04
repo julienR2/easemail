@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
+import jsFileDownload from 'js-file-download';
+
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -34,12 +36,17 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.templateRef = React.createRef();
     this.state = {
       selectedTemplate: {
         ...templates[1],
         propTypes: templates[1].component.defaultProps,
       },
     }
+
+    templates.forEach(({ name }) => {
+      this[name] = React.createRef();
+    });
   }
 
   onSelectTemplate = template => () => {
@@ -60,6 +67,11 @@ class App extends PureComponent {
     });
   }
 
+  onDownload = () => {
+    const email = this[this.state.selectedTemplate.name].current.renderEmail();
+    jsFileDownload(email, `${this.state.selectedTemplate.name}.html`);
+  }
+
   render() {
     const { classes } = this.props;
     const { selectedTemplate } = this.state;
@@ -71,7 +83,9 @@ class App extends PureComponent {
             <Typography variant="title" color="inherit" noWrap className={classes.title}>
               Easymail
             </Typography>
-            <Button color="inherit">Download</Button>
+            <Button color="inherit" onClick={this.onDownload}>
+              Download
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -99,7 +113,7 @@ class App extends PureComponent {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           { selectedTemplate ? (
-            <selectedTemplate.component {...selectedTemplate.propTypes} />
+            <selectedTemplate.component ref={this[selectedTemplate.name]} {...selectedTemplate.propTypes} />
           ) : (
             <Typography noWrap>
               Choose a template on the left

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { PropTypes } from 'prop-types';
 import shortid from 'shortid';
 import _ from 'lodash';
@@ -80,13 +81,22 @@ export default class Template2 extends Component {
     };
   }
 
+  renderEmail() {
+    return `
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      ${ReactDOMServer.renderToStaticMarkup(this.render())}
+    `.replace(/<div class="comment">([\s\S]*?)<\/div>/g, '$1')
+     .replace(/(margin:)/g, 'Margin:')
+     .replace(/(\.\/assets\/images\/)/g, 'http://s3.nouma.io/emails/')
+  }
+
   render() {
     const { text, list, cta, pre_cta } = this.props;
     const { theme } = this.state;
 
     return (
       <ThemeContext.Provider value={theme}>
-        <Email ref={email => this.email = email}>
+        <Email ref={this.email}>
           <Header />
           <Body>
             <Text>
