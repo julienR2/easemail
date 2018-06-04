@@ -42,7 +42,7 @@ export default class Template2 extends Component {
     super(props);
 
     this.state = {
-      theme: _.merge(defaultTheme, {
+      theme: _.merge({}, defaultTheme, {
         header: {
           backgroundColor: '#4A90E2',
           borderTopRightRadius: '8px',
