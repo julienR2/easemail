@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import shortid from 'shortid';
 import _ from 'lodash';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -14,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import RemoveCircleOutline from '@material-ui/icons/RemoveCircleOutline';
 
-class Editor extends PureComponent {
+class Editor extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string,
@@ -28,6 +27,21 @@ class Editor extends PureComponent {
     newProptypes[key] = value;
 
     this.props.onPropsChange(newProptypes);
+  }
+
+  onArrayPropsChange = (key, index) => ({ target: { value }}) => {
+    const { propTypes } = this.props;
+    this.onPropsChange(key, _.map(propTypes[key], (prop, i) => (
+      i === index ? {
+        ...prop,
+        value,
+      } : prop
+    )));
+  }
+
+  deleteItem = (key, index) => () => {
+    const { propTypes } = this.props;
+    this.onPropsChange(key, _.filter(propTypes[key], (_, i) => i !== index));
   }
 
   render() {
@@ -48,12 +62,12 @@ class Editor extends PureComponent {
           {_.keys(propTypes).map(key => {
             if (_.isString(propTypes[key])) {
               return (
-                <ListItem key={shortid.generate()} className={classes.listItem}>
+                <ListItem key={key} className={classes.listItem}>
                   <InputLabel>
                     {key}
                   </InputLabel>
                   <Grid container>
-                    <Grid item className={classes.textFieldWrapper}>
+                    <Grid item className={classes.textFieldWrapper} xs={12}>
                       <TextField
                         multiline
                         defaultValue={propTypes[key]}
@@ -68,24 +82,24 @@ class Editor extends PureComponent {
             }
             if (_.isArray(propTypes[key])) {
               return (
-                <ListItem key={shortid.generate()} className={classes.listItem}>
+                <ListItem key={key} className={classes.listItem}>
                   <InputLabel>
                     {key}
                   </InputLabel>
-                  {propTypes[key].map(row => (
-                    <Grid container spacing={8} xs={12} alignItems="flex-end" key={shortid.generate()}>
+                  {propTypes[key].map(({ key: itemKey, value }, index) => (
+                    <Grid container spacing={8} alignItems="flex-end" key={itemKey}>
                       <Grid item>
-                        <IconButton aria-label="Delete">
+                        <IconButton aria-label="Delete" onClick={this.deleteItem(key, index)}>
                           <RemoveCircleOutline />
                         </IconButton>
                       </Grid>
-                      <Grid item className={classes.textFieldWrapper}>
+                      <Grid item className={classes.textFieldWrapper} xs={12}>
                         <TextField
                           multiline
-                          defaultValue={row}
+                          defaultValue={value}
                           className={classes.textField}
                           margin="normal"
-                          onChange={(event) => this.onPropsChange(key, event.target.value)}
+                          onChange={this.onArrayPropsChange(key, index)}
                         />
 
                       </Grid>

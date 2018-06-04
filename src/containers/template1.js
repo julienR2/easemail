@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import shortid from 'shortid';
 
 import Email from '../components/email';
 import H1 from '../components/h1';
@@ -24,9 +25,9 @@ class Template1 extends Component {
   static defaultProps = {
     title: `Vos marchés publics en 1 clic <br /> DCE garantis`,
     list: [
-      'Accès instantané à tous les DCE',
-      'Alertes, DCE et régions illimitées',
-      'Marchés &lt;90k€ inclus',
+      { key: shortid.generate(), value: 'Accès instantané à tous les DCE' },
+      { key: shortid.generate(), value: 'Alertes, DCE et régions illimitées' },
+      { key: shortid.generate(), value: 'Marchés &lt;90k€ inclus' },
     ],
   }
 
@@ -58,9 +59,9 @@ class Template1 extends Component {
             </H1>
 
             <List>
-              {list.map((elt) => (
-                <ListItem key={elt}>
-                  {elt}
+              {list.map(({ key, value }) => (
+                <ListItem key={key}>
+                  {value}
                 </ListItem>
               ))}
             </List>
