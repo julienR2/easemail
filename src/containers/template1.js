@@ -64,7 +64,6 @@ export default class Template1 extends Component {
             <H1 style={{margin: '0 0 42px 0'}}>
               { title }
             </H1>
-
             <List>
               {list.map(({ key, value }) => (
                 <ListItem key={key}>

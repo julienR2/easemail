@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import shortid from 'shortid';
 import _ from 'lodash';
 
 import Drawer from '@material-ui/core/Drawer';
-import InputLabel from '@material-ui/core/InputLabel';
 import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import RemoveCircleOutline from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 
@@ -85,36 +86,33 @@ class Editor extends Component {
         <div className={classes.toolbar} />
         <List
           subheader={
-            <ListSubheader>{title}</ListSubheader>
+            <Fragment>
+              <ListSubheader>{title}</ListSubheader>
+              <Divider />
+            </Fragment>
           }
         >
           {_.keys(propTypes).map(key => {
+            let child = '';
             if (_.isString(propTypes[key])) {
-              return (
-                <ListItem key={key} className={classes.listItem}>
-                  <InputLabel>
-                    {key}
-                  </InputLabel>
+              child = (
+                <ListItem className={classes.listItem}>
                   <Grid container>
                     <Grid item className={classes.textFieldWrapper} xs={12}>
                       <TextField
                         multiline
-                        defaultValue={this.htmlToText(propTypes[key])}
+                        defaultValue={propTypes[key]}
                         className={classes.textField}
                         margin="normal"
-                        onChange={(event) => this.onPropsChange(key, this.textToHtml(event.target.value))}
+                        onChange={(event) => this.onPropsChange(key, event.target.value)}
                       />
                     </Grid>
                   </Grid>
                 </ListItem>
               )
-            }
-            if (_.isArray(propTypes[key])) {
-              return (
-                <ListItem key={key} className={classes.listItem}>
-                  <InputLabel>
-                    {key}
-                  </InputLabel>
+            } else if (_.isArray(propTypes[key])) {
+              child = (
+                <ListItem className={classes.listItem}>
                   {propTypes[key].map(({ key: itemKey, value }, index) => (
                     <Grid container spacing={8} alignItems="flex-end" key={itemKey}>
                       <Grid item>
@@ -138,13 +136,9 @@ class Editor extends Component {
                   </IconButton>
                 </ListItem>
               );
-            }
-            if (_.isObject(propTypes[key])) {
-              return (
-                <ListItem key={key} className={classes.listItem}>
-                  <InputLabel>
-                    {key}
-                  </InputLabel>
+            } else if (_.isObject(propTypes[key])) {
+              child = (
+                <ListItem className={classes.listItem}>
                   {_.keys(propTypes[key]).map(objectKey => (
                     <Grid container key={objectKey}>
                       <Grid item className={classes.textFieldWrapper} xs={12}>
@@ -162,7 +156,15 @@ class Editor extends Component {
               );
             }
 
-            return '';
+            return (
+              <Fragment key={key}>
+                <ListItem>
+                  <ListItemText primary={key.replace('_', ' ')} className={classes.label} />
+                </ListItem>
+                { child }
+                <Divider />
+              </Fragment>
+            )
           })}
         </List>
       </Drawer>
@@ -192,8 +194,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
   listItem: {
+    paddingTop: 0,
     flexDirection: 'column',
     alignItems: 'flex-start',
+  },
+  label: {
+    textTransform: 'capitalize',
   }
 });
 

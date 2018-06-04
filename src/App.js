@@ -8,6 +8,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
 
 import Template1 from './containers/template1';
 import Template2 from './containers/template2';
@@ -67,9 +68,10 @@ class App extends PureComponent {
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="title" color="inherit" noWrap className={classes.title}>
               Easymail
             </Typography>
+            <Button color="inherit">Download</Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -128,6 +130,9 @@ const styles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+  },
+  title: {
+    flex: 1,
   },
   drawerPaper: {
     position: 'relative',
