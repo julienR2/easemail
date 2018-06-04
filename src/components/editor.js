@@ -65,6 +65,14 @@ class Editor extends Component {
     this.onPropsChange(key, _.filter(propTypes[key], (_, i) => i !== index));
   }
 
+  htmlToText(html) {
+    return html.replace('<br />', '\n');
+  }
+
+  textToHtml(html) {
+    return html.replace('<br />', '\n');
+  }
+
   render() {
     const { classes, propTypes, title } = this.props;
 
@@ -91,10 +99,10 @@ class Editor extends Component {
                     <Grid item className={classes.textFieldWrapper} xs={12}>
                       <TextField
                         multiline
-                        defaultValue={propTypes[key]}
+                        defaultValue={this.htmlToText(propTypes[key])}
                         className={classes.textField}
                         margin="normal"
-                        onChange={(event) => this.onPropsChange(key, event.target.value)}
+                        onChange={(event) => this.onPropsChange(key, this.textToHtml(event.target.value))}
                       />
                     </Grid>
                   </Grid>
