@@ -21,6 +21,7 @@ class Template1 extends Component {
     title: PropTypes.string,
     list: PropTypes.array,
     cta: PropTypes.object,
+    sub_cta: PropTypes.string,
   }
 
   static defaultProps = {
@@ -32,8 +33,9 @@ class Template1 extends Component {
     ],
     cta: {
       url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
-      text: 'Parcourir les <strong>10&nbsp;000&nbsp;+ appels d\'offres</strong>',
-    }
+      text: 'Parcourir les 10&nbsp;000&nbsp;+ appels d\'offres',
+    },
+    sub_cta: '3574 appels d\'offres publiés aujourd\'hui !',
   }
 
   constructor(props) {
@@ -45,7 +47,7 @@ class Template1 extends Component {
   }
 
   render() {
-    const { title, list, cta } = this.props;
+    const { title, list, cta, sub_cta } = this.props;
     const { theme } = this.state;
 
     return (
@@ -74,7 +76,7 @@ class Template1 extends Component {
               {cta.text}
             </Button>
             <Text secondary style={{margin: '24px 0 0'}}>
-              3574 appels d'offres publiés aujourd'hui !
+              {sub_cta}
             </Text>
             <Link style={{margin: '80px 0 0'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
               <Image style={{width: '160px'}} alt="Logo_NouMa" src="./assets/images/logo_white.png" />

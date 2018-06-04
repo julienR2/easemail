@@ -132,6 +132,7 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
+    height: '100%',
   },
   content: {
     flexGrow: 1,

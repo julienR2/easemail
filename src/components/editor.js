@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import shortid from 'shortid';
 import _ from 'lodash';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -11,7 +12,9 @@ import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import RemoveCircleOutline from '@material-ui/icons/RemoveCircleOutline';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 
 class Editor extends Component {
   static propTypes = {
@@ -37,6 +40,25 @@ class Editor extends Component {
         value,
       } : prop
     )));
+  }
+
+  onObjectPropsChange = (key, objectKey) => ({ target: { value }}) => {
+    const { propTypes } = this.props;
+    let newProps = {};
+    newProps[objectKey] = value;
+
+    this.onPropsChange(key, {
+      ...propTypes[key],
+      ...newProps,
+    });
+  }
+
+  addItem = (key) => () => {
+    const { propTypes } = this.props;
+    this.onPropsChange(key, [...propTypes[key], {
+      key: shortid.generate(),
+      value: '',
+    }]);
   }
 
   deleteItem = (key, index) => () => {
@@ -101,13 +123,38 @@ class Editor extends Component {
                           margin="normal"
                           onChange={this.onArrayPropsChange(key, index)}
                         />
-
+                      </Grid>
+                    </Grid>
+                  ))}
+                  <IconButton aria-label="Add" onClick={this.addItem(key)}>
+                    <AddCircleOutline />
+                  </IconButton>
+                </ListItem>
+              );
+            }
+            if (_.isObject(propTypes[key])) {
+              return (
+                <ListItem key={key} className={classes.listItem}>
+                  <InputLabel>
+                    {key}
+                  </InputLabel>
+                  {_.keys(propTypes[key]).map(objectKey => (
+                    <Grid container key={objectKey}>
+                      <Grid item className={classes.textFieldWrapper} xs={12}>
+                        <TextField
+                          label={objectKey}
+                          defaultValue={propTypes[key][objectKey]}
+                          className={classes.textField}
+                          margin="normal"
+                          onChange={this.onObjectPropsChange(key, objectKey)}
+                        />
                       </Grid>
                     </Grid>
                   ))}
                 </ListItem>
               );
             }
+
             return '';
           })}
         </List>
@@ -123,6 +170,7 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
+    height: '100%',
   },
   textFieldWrapper: {
     display: 'flex',
@@ -138,6 +186,7 @@ const styles = theme => ({
   },
   listItem: {
     flexDirection: 'column',
+    alignItems: 'flex-start',
   }
 });
 
