@@ -16,7 +16,7 @@ import Text from '../components/text';
 
 import { ThemeContext, defaultTheme } from '../defaultTheme';
 
-class Template1 extends Component {
+export default class Template1 extends Component {
   static propTypes = {
     title: PropTypes.string,
     list: PropTypes.array,
@@ -89,5 +89,3 @@ class Template1 extends Component {
     )
   }
 }
-
-export default Template1;
