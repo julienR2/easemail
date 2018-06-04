@@ -36,8 +36,8 @@ class App extends PureComponent {
 
     this.state = {
       selectedTemplate: {
-        ...templates[0],
-        propTypes: templates[0].component.defaultProps,
+        ...templates[1],
+        propTypes: templates[1].component.defaultProps,
       },
     }
   }

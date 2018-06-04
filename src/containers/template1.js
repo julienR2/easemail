@@ -25,7 +25,7 @@ export default class Template1 extends Component {
   }
 
   static defaultProps = {
-    title: `Vos marchés publics en 1 clic <br /> DCE garantis`,
+    title: `Vos marchés publics en 1 clic<br />DCE garantis`,
     list: [
       { key: shortid.generate(), value: 'Accès instantané à tous les DCE' },
       { key: shortid.generate(), value: 'Alertes, DCE et régions illimitées' },

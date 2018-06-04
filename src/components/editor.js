@@ -32,8 +32,16 @@ class Editor extends Component {
     this.props.onPropsChange(newProptypes);
   }
 
-  onArrayPropsChange = (key, index) => ({ target: { value }}) => {
+  onStringPropsChange = (key) => ({ target: { value: textValue }}) => {
+    const value = this.textToHtml(textValue);
+
+    this.onPropsChange(key, value);
+  }
+
+  onArrayPropsChange = (key, index) => ({ target: { value: textValue }}) => {
     const { propTypes } = this.props;
+    const value = this.textToHtml(textValue);
+
     this.onPropsChange(key, _.map(propTypes[key], (prop, i) => (
       i === index ? {
         ...prop,
@@ -42,8 +50,10 @@ class Editor extends Component {
     )));
   }
 
-  onObjectPropsChange = (key, objectKey) => ({ target: { value }}) => {
+  onObjectPropsChange = (key, objectKey) => ({ target: { value: textValue }}) => {
     const { propTypes } = this.props;
+    const value = this.textToHtml(textValue);
+
     let newProps = {};
     newProps[objectKey] = value;
 
@@ -55,6 +65,7 @@ class Editor extends Component {
 
   addItem = (key) => () => {
     const { propTypes } = this.props;
+
     this.onPropsChange(key, [...propTypes[key], {
       key: shortid.generate(),
       value: '',
@@ -63,15 +74,16 @@ class Editor extends Component {
 
   deleteItem = (key, index) => () => {
     const { propTypes } = this.props;
+
     this.onPropsChange(key, _.filter(propTypes[key], (_, i) => i !== index));
   }
 
   htmlToText(html) {
-    return html.replace('<br />', '\n');
+    return html.replace(/<br \/>/g, '\n');
   }
 
   textToHtml(html) {
-    return html.replace('<br />', '\n');
+    return html.replace(/\n/g, '<br />');
   }
 
   render() {
@@ -101,10 +113,10 @@ class Editor extends Component {
                     <Grid item className={classes.textFieldWrapper} xs={12}>
                       <TextField
                         multiline
-                        defaultValue={propTypes[key]}
+                        defaultValue={this.htmlToText(propTypes[key])}
                         className={classes.textField}
                         margin="normal"
-                        onChange={(event) => this.onPropsChange(key, event.target.value)}
+                        onChange={this.onStringPropsChange(key)}
                       />
                     </Grid>
                   </Grid>
@@ -123,7 +135,7 @@ class Editor extends Component {
                       <Grid item className={classes.textFieldWrapper} xs={12}>
                         <TextField
                           multiline
-                          defaultValue={value}
+                          defaultValue={this.htmlToText(value)}
                           className={classes.textField}
                           margin="normal"
                           onChange={this.onArrayPropsChange(key, index)}
@@ -144,7 +156,7 @@ class Editor extends Component {
                       <Grid item className={classes.textFieldWrapper} xs={12}>
                         <TextField
                           label={objectKey}
-                          defaultValue={propTypes[key][objectKey]}
+                          defaultValue={this.htmlToText(propTypes[key][objectKey])}
                           className={classes.textField}
                           margin="normal"
                           onChange={this.onObjectPropsChange(key, objectKey)}

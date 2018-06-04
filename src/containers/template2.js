@@ -24,7 +24,7 @@ export default class Template2 extends Component {
   }
 
   static defaultProps = {
-    text: 'Bonjour, <br /><br /> Vous bénéficiez actuellement d’un mois gratuit sur www.nouma.fr.<br /><br /> Cet avantage prendra fin le 22 juin 2017. Afin de continuer de profiter de toutes les fonctionalités de Nouma. nous vous invitons à vous abonner pour 29€/mois et ainsi retrouver :',
+    text: 'Bonjour,<br /><br />Vous bénéficiez actuellement d’un mois gratuit sur www.nouma.fr.<br /><br />Cet avantage prendra fin le 22 juin 2017. Afin de continuer de profiter de toutes les fonctionalités de Nouma. nous vous invitons à vous abonner pour 29€/mois et ainsi retrouver :',
     list: [
       { key: shortid.generate(), value: '<strong>+ de 17000 appels</strong> d’offres consultables' },
       { key: shortid.generate(), value: '<strong>dont 4000 appels d’offres <90k€</strong> (exclusivité Nouma)' },
