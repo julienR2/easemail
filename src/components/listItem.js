@@ -1,6 +1,7 @@
-/* eslint-disable react/no-danger */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import ReactHtmlParser from 'react-html-parser';
 
 import { ThemeContext } from '../defaultTheme';
 
@@ -26,8 +27,14 @@ export default class ListItem extends PureComponent {
               ...theme.listItem,
               ...style,
             }}
-            dangerouslySetInnerHTML={{__html: children}}
-          />
+          >
+            {React.Children.map(children, (child) => {
+              if (_.isString(child)) {
+                return ReactHtmlParser(child);
+              }
+              return child;
+            })}
+          </li>
         )}
       </ThemeContext.Consumer>
     );

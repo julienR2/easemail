@@ -20,6 +20,7 @@ class Template1 extends Component {
   static propTypes = {
     title: PropTypes.string,
     list: PropTypes.array,
+    cta: PropTypes.object,
   }
 
   static defaultProps = {
@@ -29,6 +30,10 @@ class Template1 extends Component {
       { key: shortid.generate(), value: 'Alertes, DCE et régions illimitées' },
       { key: shortid.generate(), value: 'Marchés &lt;90k€ inclus' },
     ],
+    cta: {
+      url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
+      text: 'Parcourir les <strong>10&nbsp;000&nbsp;+ appels d\'offres</strong>',
+    }
   }
 
   constructor(props) {
@@ -40,7 +45,7 @@ class Template1 extends Component {
   }
 
   render() {
-    const { title, list } = this.props;
+    const { title, list, cta } = this.props;
     const { theme } = this.state;
 
     return (
@@ -65,8 +70,8 @@ class Template1 extends Component {
                 </ListItem>
               ))}
             </List>
-            <Button href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta" style={{margin: '52px 0 0'}}>
-              Parcourir les 10&nbsp;000&nbsp;+ appels d'offres
+            <Button href={cta.url} style={{margin: '52px 0 0'}}>
+              {cta.text}
             </Button>
             <Text secondary style={{margin: '24px 0 0'}}>
               3574 appels d'offres publiés aujourd'hui !

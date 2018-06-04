@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
+import _ from 'lodash';
 
 import { ThemeContext } from '../defaultTheme';
 
@@ -32,7 +34,12 @@ export default class Link extends PureComponent {
             target="_blank"
             rel="noopener noreferrer"
           >
-            { children }
+            {React.Children.map(children, (child) => {
+              if (_.isString(child)) {
+                return ReactHtmlParser(child);
+              }
+              return child;
+            })}
           </a>
         )}
       </ThemeContext.Consumer>
