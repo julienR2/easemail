@@ -93,7 +93,10 @@ class Editor extends Component {
       <Drawer
         variant="permanent"
         anchor="right"
-        classes={{ paper: classes.drawerPaper }}
+        classes={{
+          docked: classes.drawerDocked,
+          paper: classes.drawerPaper,
+        }}
       >
         <div className={classes.toolbar} />
         <List
@@ -188,6 +191,9 @@ const drawerWidth = 360;
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar,
+  drawerDocked: {
+    overflow: 'scroll',
+  },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
