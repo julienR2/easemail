@@ -19,24 +19,36 @@ import { ThemeContext, defaultTheme } from '../defaultTheme';
 
 export default class Template1 extends Component {
   static propTypes = {
-    title: PropTypes.string,
-    list: PropTypes.array,
+    title: PropTypes.object,
+    list: PropTypes.object,
     cta: PropTypes.object,
-    sub_cta: PropTypes.string,
+    sub_cta: PropTypes.object,
   }
 
   static defaultProps = {
-    title: `Vos marchés publics en 1 clic<br />DCE garantis`,
-    list: [
-      { key: shortid.generate(), value: 'Accès instantané à tous les DCE' },
-      { key: shortid.generate(), value: 'Alertes, DCE et régions illimitées' },
-      { key: shortid.generate(), value: 'Marchés &lt;90k€ inclus' },
-    ],
-    cta: {
-      url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
-      text: 'Parcourir les 10&nbsp;000&nbsp;+ appels d\'offres',
+    title: {
+      visible: true,
+      value: `Vos marchés publics en 1 clic<br />DCE garantis`
     },
-    sub_cta: '3574 appels d\'offres publiés aujourd\'hui !',
+    list: {
+      visible: true,
+      value: [
+        { key: shortid.generate(), value: 'Accès instantané à tous les DCE' },
+        { key: shortid.generate(), value: 'Alertes, DCE et régions illimitées' },
+        { key: shortid.generate(), value: 'Marchés &lt;90k€ inclus' },
+      ],
+    },
+    cta: {
+      visible: true,
+      value: {
+        url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
+        text: 'Parcourir les 10&nbsp;000&nbsp;+ appels d\'offres',
+      },
+    },
+    sub_cta: {
+      visible: true,
+      value: '3574 appels d\'offres publiés aujourd\'hui !'
+    },
   }
 
   constructor(props) {
@@ -74,20 +86,20 @@ export default class Template1 extends Component {
             }}
           >
             <H1 style={{margin: '0 0 42px 0'}}>
-              { title }
+              { title.value }
             </H1>
             <List>
-              {list.map(({ key, value }) => (
+              {list.value.map(({ key, value }) => (
                 <ListItem key={key}>
                   {value}
                 </ListItem>
               ))}
             </List>
-            <Button href={cta.url} style={{margin: '52px 0 0'}}>
-              {cta.text}
+            <Button href={cta.value.url} style={{margin: '52px 0 0'}}>
+              {cta.value.text}
             </Button>
             <Text secondary style={{margin: '24px 0 0'}}>
-              {sub_cta}
+              {sub_cta.value}
             </Text>
             <Link style={{margin: '80px 0 0'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
               <Image style={{width: '160px'}} alt="Logo_NouMa" src="./assets/images/logo_white.png" />

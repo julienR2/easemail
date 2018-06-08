@@ -90,7 +90,10 @@ class App extends PureComponent {
         </AppBar>
         <Drawer
           variant="permanent"
-          classes={{ paper: classes.drawerPaper }}
+          classes={{
+            docked: classes.drawerDocked,
+            paper: classes.drawerPaper,
+          }}
         >
           <div className={classes.toolbar} />
           <List>
@@ -141,12 +144,16 @@ const styles = theme => ({
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
+    height: '100vh',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
   title: {
     flex: 1,
+  },
+  drawerDocked: {
+    overflow: 'scroll',
   },
   drawerPaper: {
     position: 'relative',
@@ -158,6 +165,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
+    overflow: 'scroll',
   },
   toolbar: theme.mixins.toolbar,
   listItemSelected: {

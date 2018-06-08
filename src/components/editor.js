@@ -5,7 +5,9 @@ import shortid from 'shortid';
 import _ from 'lodash';
 
 import Drawer from '@material-ui/core/Drawer';
+import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,7 +29,7 @@ class Editor extends Component {
   onPropsChange = (key, value) => {
     const { propTypes } = this.props;
     let newProptypes = { ...propTypes };
-    newProptypes[key] = value;
+    newProptypes[key].value = value;
 
     this.props.onPropsChange(newProptypes);
   }
@@ -42,7 +44,7 @@ class Editor extends Component {
     const { propTypes } = this.props;
     const value = this.textToHtml(textValue);
 
-    this.onPropsChange(key, _.map(propTypes[key], (prop, i) => (
+    this.onPropsChange(key, _.map(propTypes[key].value, (prop, i) => (
       i === index ? {
         ...prop,
         value,
@@ -58,7 +60,7 @@ class Editor extends Component {
     newProps[objectKey] = value;
 
     this.onPropsChange(key, {
-      ...propTypes[key],
+      ...propTypes[key].value,
       ...newProps,
     });
   }
@@ -66,7 +68,7 @@ class Editor extends Component {
   addItem = (key) => () => {
     const { propTypes } = this.props;
 
-    this.onPropsChange(key, [...propTypes[key], {
+    this.onPropsChange(key, [...propTypes[key].value, {
       key: shortid.generate(),
       value: '',
     }]);
@@ -75,7 +77,7 @@ class Editor extends Component {
   deleteItem = (key, index) => () => {
     const { propTypes } = this.props;
 
-    this.onPropsChange(key, _.filter(propTypes[key], (_, i) => i !== index));
+    this.onPropsChange(key, _.filter(propTypes[key].value, (_, i) => i !== index));
   }
 
   htmlToText(html) {
@@ -86,6 +88,15 @@ class Editor extends Component {
     return html.replace(/\n/g, '<br />');
   }
 
+  toggleKey = (key) => () => {
+    console.log('hrer ?', key);
+    const { propTypes } = this.props;
+    let newProptypes = { ...propTypes };
+    newProptypes[key].visible = !propTypes[key].visible;
+
+    this.props.onPropsChange(newProptypes);
+  }
+
   render() {
     const { classes, propTypes, title } = this.props;
 
@@ -93,7 +104,10 @@ class Editor extends Component {
       <Drawer
         variant="permanent"
         anchor="right"
-        classes={{ paper: classes.drawerPaper }}
+        classes={{
+          docked: classes.drawerDocked,
+          paper: classes.drawerPaper,
+        }}
       >
         <div className={classes.toolbar} />
         <List
@@ -106,14 +120,14 @@ class Editor extends Component {
         >
           {_.keys(propTypes).map(key => {
             let child = '';
-            if (_.isString(propTypes[key])) {
+            if (_.isString(propTypes[key].value)) {
               child = (
                 <ListItem className={classes.listItem}>
                   <Grid container>
                     <Grid item className={classes.textFieldWrapper} xs={12}>
                       <TextField
                         multiline
-                        defaultValue={this.htmlToText(propTypes[key])}
+                        defaultValue={this.htmlToText(propTypes[key].value)}
                         className={classes.textField}
                         margin="normal"
                         onChange={this.onStringPropsChange(key)}
@@ -122,10 +136,10 @@ class Editor extends Component {
                   </Grid>
                 </ListItem>
               )
-            } else if (_.isArray(propTypes[key])) {
+            } else if (_.isArray(propTypes[key].value)) {
               child = (
                 <ListItem className={classes.listItem}>
-                  {propTypes[key].map(({ key: itemKey, value }, index) => (
+                  {propTypes[key].value.map(({ key: itemKey, value }, index) => (
                     <Grid container spacing={8} alignItems="flex-end" key={itemKey}>
                       <Grid item>
                         <IconButton aria-label="Delete" onClick={this.deleteItem(key, index)}>
@@ -151,12 +165,12 @@ class Editor extends Component {
             } else if (_.isObject(propTypes[key])) {
               child = (
                 <ListItem className={classes.listItem}>
-                  {_.keys(propTypes[key]).map(objectKey => (
+                  {_.keys(propTypes[key].value).map(objectKey => (
                     <Grid container key={objectKey}>
                       <Grid item className={classes.textFieldWrapper} xs={12}>
                         <TextField
                           label={objectKey}
-                          defaultValue={this.htmlToText(propTypes[key][objectKey])}
+                          defaultValue={this.htmlToText(propTypes[key].value[objectKey])}
                           className={classes.textField}
                           margin="normal"
                           onChange={this.onObjectPropsChange(key, objectKey)}
@@ -172,6 +186,12 @@ class Editor extends Component {
               <Fragment key={key}>
                 <ListItem>
                   <ListItemText primary={key.replace('_', ' ')} className={classes.label} />
+                  <ListItemSecondaryAction>
+                    <Switch
+                      onChange={this.toggleKey(key)}
+                      checked={propTypes[key].visible}
+                    />
+                  </ListItemSecondaryAction>
                 </ListItem>
                 { child }
                 <Divider />
@@ -188,6 +208,9 @@ const drawerWidth = 360;
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar,
+  drawerDocked: {
+    overflow: 'scroll',
+  },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
