@@ -18,24 +18,46 @@ import { ThemeContext, defaultTheme } from '../defaultTheme';
 
 export default class Template2 extends Component {
   static propTypes = {
-    text: PropTypes.string,
-    list: PropTypes.array,
-    pre_cta: PropTypes.string,
+    text: PropTypes.object,
+    list: PropTypes.object,
+    post_list_text: PropTypes.object,
+    pre_cta: PropTypes.object,
     cta: PropTypes.object,
+    post_cta_text: PropTypes.object,
   }
 
   static defaultProps = {
-    text: 'Bonjour,<br /><br />Vous bénéficiez actuellement d’un mois gratuit sur www.nouma.fr.<br /><br />Cet avantage prendra fin le 22 juin 2017. Afin de continuer de profiter de toutes les fonctionalités de Nouma. nous vous invitons à vous abonner pour 29€/mois et ainsi retrouver :',
-    list: [
-      { key: shortid.generate(), value: '<strong>+ de 17000 appels</strong> d’offres consultables' },
-      { key: shortid.generate(), value: '<strong>dont 4000 appels d’offres <90k€</strong> (exclusivité Nouma)' },
-      { key: shortid.generate(), value: '<strong>Un accès instantané</strong> aux DCE' },
-      { key: shortid.generate(), value: 'Une mise en relation avec des <strong>spécialistes de la réponse</strong>' },
-    ],
-    pre_cta: 'Pour 1€/jour, trouvez vous aussi de nouveaux clients&nbsp;!',
+    text: {
+      visible: true,
+      value: 'Bonjour,<br /><br />Vous bénéficiez actuellement d’un mois gratuit sur www.nouma.fr.<br /><br />Cet avantage prendra fin le 22 juin 2017. Afin de continuer de profiter de toutes les fonctionalités de Nouma. nous vous invitons à vous abonner pour 29€/mois et ainsi retrouver :',
+    },
+    list: {
+      visible: true,
+      value: [
+        { key: shortid.generate(), value: '<strong>+ de 17000 appels</strong> d’offres consultables' },
+        { key: shortid.generate(), value: '<strong>dont 4000 appels d’offres <90k€</strong> (exclusivité Nouma)' },
+        { key: shortid.generate(), value: '<strong>Un accès instantané</strong> aux DCE' },
+        { key: shortid.generate(), value: 'Une mise en relation avec des <strong>spécialistes de la réponse</strong>' },
+      ],
+    },
+    post_list_text: {
+      visible: true,
+      value: 'Some text after the list',
+    },
+    pre_cta: {
+      visible: true,
+      value: 'Pour 1€/jour, trouvez vous aussi de nouveaux clients&nbsp;!',
+    },
     cta: {
-      url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
-      text: 'M\'abonner',
+      visible: true,
+      value: {
+        url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
+        text: 'M\'abonner',
+      },
+    },
+    post_cta_text: {
+      visible: true,
+      value: 'Some text after the cta',
     },
   }
 
@@ -91,7 +113,7 @@ export default class Template2 extends Component {
   }
 
   render() {
-    const { text, list, cta, pre_cta } = this.props;
+    const { text, list, post_list_text, cta, pre_cta, post_cta_text } = this.props;
     const { theme } = this.state;
 
     return (
@@ -99,22 +121,40 @@ export default class Template2 extends Component {
         <Email ref={this.email}>
           <Header />
           <Body>
-            <Text>
-              {text}
-            </Text>
-            <List style={{margin: '32px 0 0'}}>
-              {list.map(({ key, value }) => (
-                <ListItem key={key}>
-                  {value}
-                </ListItem>
-              ))}
-            </List>
-            <Text secondary style={{margin: '40px 0 0'}}>
-              {pre_cta}
-            </Text>
-            <Button href={cta.url} style={{margin: '24px 0 0'}}>
-              {cta.text}
-            </Button>
+            {text.visible && (
+              <Text>
+                {text.value}
+              </Text>
+            )}
+            {list.visible && (
+              <List style={{margin: '32px 0 0'}}>
+                {list.value.map(({ key, value }) => (
+                  <ListItem key={key}>
+                    {value}
+                  </ListItem>
+                ))}
+              </List>
+            )}
+            {post_list_text.visible && (
+              <Text style={{margin: '32px 0 0'}}>
+                {post_list_text.value}
+              </Text>
+            )}
+            {pre_cta.visible && (
+              <Text secondary style={{margin: '40px 0 0'}}>
+                {pre_cta.value}
+              </Text>
+            )}
+            {cta.visible && (
+              <Button href={cta.value.url} style={{margin: '24px 0 0'}}>
+                {cta.value.text}
+              </Button>
+            )}
+            {post_cta_text.visible && (
+              <Text style={{margin: '32px 0 0'}}>
+                {post_cta_text.value}
+              </Text>
+            )}
           </Body>
 
           <Footer />

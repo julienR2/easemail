@@ -31,6 +31,10 @@ export default class Body extends PureComponent {
             {React.Children.map(
               children,
               (child) => {
+                if (!child) {
+                  return;
+                }
+
                 const { margin, ...style} = child.props.style || {};
 
                 return (
