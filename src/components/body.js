@@ -35,11 +35,16 @@ export default class Body extends PureComponent {
                   return;
                 }
 
-                const { margin, ...style} = child.props.style || {};
+                const { columnStyle } = child.props || {};
+                const { margin, ...style } = child.props.style || {};
 
                 return (
                   <Row>
-                    <Column style={{padding: margin}}>
+                    <Column style={{
+                        padding: margin,
+                        ...(columnStyle || {}),
+                      }}
+                    >
                       { React.cloneElement(child, { style }) }
                     </Column>
                   </Row>

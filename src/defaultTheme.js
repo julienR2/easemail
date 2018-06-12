@@ -65,8 +65,6 @@ export const defaultTheme = {
   },
   listItem: {
     paddingLeft: '4px',
-    fontSize: '28px',
-    lineHeight: '30px',
     margin: '0 0 16px',
     textAlign: 'left',
     msoSpecialFormat: 'bullet',

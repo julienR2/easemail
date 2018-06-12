@@ -13,10 +13,11 @@ export default class Email extends PureComponent {
       PropTypes.object,
       PropTypes.string,
     ]),
+    subject: PropTypes.string,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, subject } = this.props;
 
     return (
       <ThemeContext.Consumer>
@@ -27,6 +28,7 @@ export default class Email extends PureComponent {
               <meta charSet="utf-8" />
               <meta name="viewport" content="width=device-width" />
               <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+              <title>{ subject }</title>
               <Comment
                 text={`
                   <!--[if mso]>
