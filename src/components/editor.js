@@ -89,7 +89,6 @@ class Editor extends Component {
   }
 
   toggleKey = (key) => () => {
-    console.log('hrer ?', key);
     const { propTypes } = this.props;
     let newProptypes = { ...propTypes };
     newProptypes[key].visible = !propTypes[key].visible;

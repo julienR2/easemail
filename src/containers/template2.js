@@ -83,10 +83,6 @@ export default class Template2 extends Component {
           fontSize: '14px',
           lineHeight: '20px',
         },
-        listItem: {
-          fontSize: '18px',
-          lineHeight: '24px',
-        },
         text_secondary: {
           color: '#4A90E2',
           fontWeight: '600',
@@ -127,7 +123,7 @@ export default class Template2 extends Component {
               </Text>
             )}
             {list.visible && (
-              <List style={{margin: '32px 0 0'}}>
+              <List style={{margin: '32px 0 0'}} columnStyle={{ textAlign: 'left' }}>
                 {list.value.map(({ key, value }) => (
                   <ListItem key={key}>
                     {value}

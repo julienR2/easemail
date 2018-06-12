@@ -67,7 +67,17 @@ export default class Footer extends PureComponent {
               </Column>
             </Row>
             <Row>
-              <Column>
+              <Column style={{paddingTop: '16px'}}>
+                <Text style={theme.footer_text}>
+                  Si vous ne souhaitez plus recevoir d’email de NouMa,&nbsp;
+                  <Link href="{{unsubscribe_url}}" style={theme.footer_text}>
+                    cliquez ici
+                  </Link>
+                </Text>
+              </Column>
+            </Row>
+            <Row>
+              <Column style={{paddingTop: '16px'}}>
                 <Text style={theme.footer_text}>
                   NouMa © {new Date().getFullYear()} Tous droits réservés
                 </Text>
