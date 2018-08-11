@@ -15,9 +15,10 @@
 ## Features
 
 Take advantage of React Functional programming to create mail base on Components, easily testable and customizable.
+
 Try it out ! [Demo](https://easemail.now.sh)
 
-![Easemail demo](./public/assets/images/easemail.gif)
+<img src="https://github.com/julienR2/easemail/blob/master/public/assets/images/easemail.gif?raw=true" width="600" alt="Easemail demo">
 
 ## Installation
 
