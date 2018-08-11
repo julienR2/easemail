@@ -29,35 +29,34 @@ export default class Template2 extends Component {
   static defaultProps = {
     text: {
       visible: true,
-      value: 'Bonjour,<br /><br />Vous bénéficiez actuellement d’un mois gratuit sur www.nouma.fr.<br /><br />Cet avantage prendra fin le 22 juin 2017. Afin de continuer de profiter de toutes les fonctionalités de Nouma. nous vous invitons à vous abonner pour 29€/mois et ainsi retrouver :',
+      value: 'Hi,<br /><br /> Check out this email templating tool !',
     },
     list: {
       visible: true,
       value: [
-        { key: shortid.generate(), value: '<strong>+ de 17000 appels</strong> d’offres consultables' },
-        { key: shortid.generate(), value: '<strong>dont 4000 appels d’offres <90k€</strong> (exclusivité Nouma)' },
-        { key: shortid.generate(), value: '<strong>Un accès instantané</strong> aux DCE' },
-        { key: shortid.generate(), value: 'Une mise en relation avec des <strong>spécialistes de la réponse</strong>' },
+        { key: shortid.generate(), value: '<strong>React</strong> email templating' },
+        { key: shortid.generate(), value: 'Easy <strong>preview</strong>' },
+        { key: shortid.generate(), value: 'Easy <strong>customization</strong>' },
       ],
     },
     post_list_text: {
       visible: true,
-      value: 'Some text after the list',
+      value: 'ready-to-send email.',
     },
     pre_cta: {
       visible: true,
-      value: 'Pour 1€/jour, trouvez vous aussi de nouveaux clients&nbsp;!',
+      value: 'Easing the work between dev, design, et marketing teams',
     },
     cta: {
       visible: true,
       value: {
-        url: 'https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=cta',
-        text: 'M\'abonner',
+        url: 'https://github.com/julienr2/easemail',
+        text: 'Sources on Github',
       },
     },
     post_cta_text: {
       visible: true,
-      value: 'Some text after the cta',
+      value: 'Made with love by Julien',
     },
   }
 
@@ -104,8 +103,7 @@ export default class Template2 extends Component {
       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       ${ReactDOMServer.renderToStaticMarkup(this.render())}
     `.replace(/<div class="comment">([\s\S]*?)<\/div>/g, '$1')
-     .replace(/(margin:)/g, 'Margin:')
-     .replace(/(\.\/assets\/images\/)/g, 'http://s3.nouma.io/emails/')
+     .replace(/(margin:)/g, 'Margin:');
   }
 
   render() {

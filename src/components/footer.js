@@ -29,7 +29,7 @@ export default class Footer extends PureComponent {
             <Row>
               <Column style={{paddingTop: '28px'}}>
                 <Text style={theme.footer_text}>
-                  Suivez-nous sur
+                  Follow me on
                 </Text>
               </Column>
             </Row>
@@ -38,17 +38,17 @@ export default class Footer extends PureComponent {
                 <Table style={{width: 'auto'}}>
                   <Row>
                     <Column style={{paddingRight: '44px'}}>
-                      <Link href="https://www.linkedin.com/organization/6642247">
+                      <Link href="https://www.linkedin.com/in/julien-rougeron-60044a3b">
                         <Image style={{width: '32px'}} src="./assets/images/linkedin.png" alt="linkedin" />
                       </Link>
                     </Column>
                     <Column style={{paddingRight: '44px'}}>
-                      <Link href="https://www.facebook.com/NouMa-177554099409101">
+                      <Link href="https://www.facebook.com/julien.rougeron.9">
                         <Image style={{width: '32px'}} src="./assets/images/facebook.png" alt="facebook" />
                       </Link>
                     </Column>
                     <Column>
-                      <Link href="https://twitter.com/NouMA_fr">
+                      <Link href="https://twitter.com/julien_r2">
                         <Image style={{width: '32px'}} src="./assets/images/twitter.png" alt="twitter" />
                       </Link>
                     </Column>
@@ -58,29 +58,9 @@ export default class Footer extends PureComponent {
             </Row>
             <Row>
               <Column style={{paddingTop: '16px'}}>
-                <Link href="tel:0244848600" style={{...theme.footer_text, marginRight: '12px'}}>
-                  Téléphone : 02 44 84 86 00
+                <Link href="https://julienr2.github.io" style={theme.footer_text}>
+                  Portfolio : julienr2.github.io
                 </Link>
-                <Link href="mailto:contact@nouma.fr" style={theme.footer_text}>
-                  Mail : contact@nouma.fr
-                </Link>
-              </Column>
-            </Row>
-            <Row>
-              <Column style={{paddingTop: '16px'}}>
-                <Text style={theme.footer_text}>
-                  Si vous ne souhaitez plus recevoir d’email de NouMa,&nbsp;
-                  <Link href="{{unsubscribe_url}}" style={theme.footer_text}>
-                    cliquez ici
-                  </Link>
-                </Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column style={{paddingTop: '16px'}}>
-                <Text style={theme.footer_text}>
-                  NouMa © {new Date().getFullYear()} Tous droits réservés
-                </Text>
               </Column>
             </Row>
           </Table>
