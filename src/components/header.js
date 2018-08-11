@@ -27,8 +27,8 @@ export default class Header extends PureComponent {
           >
             <Row>
               <Column>
-                <Link style={{margin: '20px 0'}} href="https://nouma.fr/?utm_source=trial-14&utm_medium=email&utm_term=logo">
-                  <Image style={{width: '160px'}} alt="Logo_NouMa" src="./assets/images/logo_white.png" />
+                <Link style={{margin: '20px 0'}} href="https://easemail.now.sh">
+                  <Image style={{width: '160px'}} alt="logo_easemail" src="./assets/images/logo.png" />
                 </Link>
               </Column>
             </Row>
