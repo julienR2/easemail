@@ -3,7 +3,7 @@
   <br>
 </h1>
 
-<h4 align="center">Email templating tool to ease communication between dev, design and marketing team</a></h4>
+<h4 align="center">Email templating tool to ease communication between dev, design and marketing team</h4>
 
 <p align="center">
   <a href="#features">Features</a> •
